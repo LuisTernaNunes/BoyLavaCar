@@ -1,0 +1,21 @@
+<div th:fragment="bloco" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container">
+        <div class="card-body">
+            <div class="alert alert-primary" role="alert">
+                No dia escolhido leve seu carro até o nosso lava rápido ou informe onde buscá-lo.
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-md-6">
+                    <a  th:href="@{/agendamento?etapa=1}" class="btn w-100" style="background-color: #2A22D1; color: white;">
+                        Carros  R$: 60,00
+                    </a>
+                </div>
+                <div class="col-12 col-md-6">
+                    <a  th:href="@{/agendamento?etapa=1}" class="btn w-100" style="background-color: #2A22D1; color: white;">
+                        Camionete R$ 70,00
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
