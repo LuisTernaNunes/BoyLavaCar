@@ -1,0 +1,26 @@
+<div th:fragment="bloco" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container">
+        <div class="card-body">
+            <div class="alert alert-primary text-dark" role="alert">
+                No dia escolhido leve seu carro até o nosso lava rápido ou informe onde buscá-lo.
+            </div>
+            <form class="row g-2">
+                <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Nome Completo</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="José Antunes">
+                </div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Telefone Whatsapp</label>
+                    <input type="tel" class="form-control" id="formGroupExampleInput2" placeholder="00 000000000">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Observações</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div class="d-flex flex-wrap justify-content-center gap-2" role="group" aria-label="Exemplo básico">
+                    <a th:href="@{/agendamento?etapa=4}" class="btn w-100 w-sm-auto" style="background-color: #2A22D1; color: white;">Proximo</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

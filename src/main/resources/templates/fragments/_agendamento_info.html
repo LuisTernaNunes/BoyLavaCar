@@ -1,0 +1,24 @@
+<div th:fragment="bloco" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container">
+        <div class="card-body">
+            <div class="alert alert-primary" role="alert">
+                <div class="d-flex align-items-center mb-3">
+                    <img th:src="@{/img/id-card.png}" alt="Ícone de identidade" class="info-icon me-2" style="width: 40px; height: 40px;">
+                    <div class="text-dark"><strong>João da Silva</strong></div>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <img th:src="@{/img/whatsapp.png}" alt="Ícone WhatsApp" class="info-icon me-2" style="width: 40px; height: 40px;">
+                    <div class="text-dark"><strong >40 99900-0000</strong></div>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <img th:src="@{/img/calendar.png}" alt="Ícone calendário" class="info-icon me-2" style="width: 40px; height: 40px;">
+                    <div class="text-dark"><strong >25/07 às 14:30</strong></div>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <img th:src="@{/img/dollar.png}" alt="Ícone valor" class="info-icon me-2" style="width: 40px; height: 40px;">
+                    <div class="text-dark"><strong th:text="${valorTotal}">R$ 70,00</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

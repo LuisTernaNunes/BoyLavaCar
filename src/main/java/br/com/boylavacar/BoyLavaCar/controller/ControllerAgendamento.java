@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ControllerAgendamento {
     @GetMapping("/agendamento")
-    public String mainPage(@RequestParam(name = "etapa", required = false, defaultValue = "4") String secao,
+    public String mainPage(@RequestParam(name = "etapa", required = false, defaultValue = "6") String secao,
                            Model model) {
         String fragmentPath;
         switch (secao) {
@@ -22,6 +22,12 @@ public class ControllerAgendamento {
                 fragmentPath = "fragments/_agendamento_dados";
                 break;
             case "4":
+                fragmentPath = "fragments/_agendamento_info";
+                break;
+            case "5":
+                fragmentPath = "fragments/_agendamento_confirmado";
+                break;
+            case "6":
             default:
                 fragmentPath = "fragments/_agendamento_cat";
                 break;

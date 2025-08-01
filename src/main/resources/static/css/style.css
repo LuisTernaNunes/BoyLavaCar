@@ -1,0 +1,19 @@
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+    background-color: transparent !important;
+    color: inherit !important;
+    border-color: #2A22D1;
+}
+.btn-check:checked + .btn-outline-primary {
+    background-color: #2A22D1 !important;
+    color: white !important;
+    border-color: #2A22D1 !important;
+}
+.btn-check:disabled + .btn-outline-primary {
+    background-color: #ff0000; /* fundo cinza claro */
+    color: #000;               /* texto acinzentado */
+    border-color: #ccc;        /* borda cinza */
+    opacity: 1;                /* evita transparência */
+    cursor: not-allowed;       /* cursor de bloqueio */
+}
