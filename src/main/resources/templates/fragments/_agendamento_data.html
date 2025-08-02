@@ -6,23 +6,18 @@
             </div>
             <div class="row g-2 mb-2">
                 <div class="d-flex flex-wrap justify-content-center gap-2" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                    <label class="btn btn-outline-primary btn-sm" for="btnradio1">Segunda<br>28/07</label>
+                    <th:block th:each="dataObj, iterStat : ${datas}">
+                        <input type="radio" class="btn-check"
+                               th:name="'btnradio'"
+                               th:id="'btnradio' + ${iterStat.index}"
+                               th:value="${dataObj.dia}"
+                               th:checked="${iterStat.index == 0}" autocomplete="off">
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                    <label class="btn btn-outline-primary btn-sm" for="btnradio2">Segunda<br>28/07</label>
-
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                    <label class="btn btn-outline-primary btn-sm" for="btnradio3">Segunda<br>28/07</label>
-
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                    <label class="btn btn-outline-primary btn-sm" for="btnradio4">Segunda<br>28/07</label>
-
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
-                    <label class="btn btn-outline-primary btn-sm" for="btnradio5">Segunda<br>28/07</label>
-
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
-                    <label class="btn btn-outline-primary btn-sm" for="btnradio6">Segunda<br>28/07</label>
+                        <label class="btn btn-outline-primary btn-sm"
+                               th:for="'btnradio' + ${iterStat.index}"
+                               th:text="${dataObj.diaFormatado()}">
+                        </label>
+                    </th:block>
                 </div>
             </div>
                 <div class="alert alert-primary text-center mb-2 text-dark" role="alert">
@@ -30,29 +25,27 @@
                 </div>
                 <div class="row g-2 mb-2">
                     <div class="d-flex flex-wrap justify-content-center gap-2" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="hora" id="horario1" autocomplete="off">
-                        <label class="btn btn-outline-primary btn-sm" for="horario1">8:00</label>
 
-                        <input type="radio" class="btn-check" name="hora" id="horario2" autocomplete="off">
-                        <label class="btn btn-outline-primary btn-sm" for="horario2">9:00</label>
+                        <th:block th:each="dia, iterStat : ${datas}">
+                            <div th:id="'horas-' + ${iterStat.index}"
+                                 th:classappend="${iterStat.index != 0} ? 'd-none' : ''"
+                                 class="horas-container d-flex flex-wrap gap-2 justify-content-center">
 
-                        <input type="radio" class="btn-check" name="hora" id="horario3" autocomplete="off">
-                        <label class="btn btn-outline-primary btn-sm" for="horario3">10:00</label>
+                                <th:block th:each="hora, hIndex : ${dia.horas}">
+                                    <input type="radio" class="btn-check"
+                                           name="hora"
+                                           th:id="'hora-' + ${iterStat.index} + '-' + ${hIndex}"
+                                           th:value="${hora}">
 
-                        <input type="radio" class="btn-check" name="hora" id="horario4" autocomplete="off">
-                        <label class="btn btn-outline-primary btn-sm" for="horario4">11:00</label>
+                                    <label class="btn btn-outline-primary btn-sm"
+                                           th:for="'hora-' + ${iterStat.index} + '-' + ${hIndex}"
+                                           th:text="${hora}">
+                                    </label>
+                                </th:block>
 
-                        <input type="radio" class="btn-check" name="hora" id="horario5" autocomplete="off">
-                        <label class="btn btn-outline-primary btn-sm" for="horario5">13:00</label>
+                            </div>
+                        </th:block>
 
-                        <input type="radio" class="btn-check" name="hora" id="horario6" autocomplete="off">
-                        <label class="btn btn-outline-primary btn-sm" for="horario6">13:00</label>
-
-                        <input type="radio" class="btn-check" name="hora" id="horario7" autocomplete="off" disabled>
-                        <label class="btn btn-outline-primary btn-sm" for="horario7">14:00</label>
-
-                        <input type="radio" class="btn-check" name="hora" id="horario8" autocomplete="off">
-                        <label class="btn btn-outline-primary btn-sm" for="horario8">13:00</label>
                     </div>
             </div>
                 <div class="d-flex flex-wrap justify-content-center gap-2 mb-2" role="group" aria-label="Exemplo básico">
