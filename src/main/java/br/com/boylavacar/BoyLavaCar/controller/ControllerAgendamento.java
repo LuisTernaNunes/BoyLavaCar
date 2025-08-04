@@ -28,7 +28,7 @@ public class ControllerAgendamento {
     @PostMapping("/agendamento")
     public String processarFormulario(@ModelAttribute DTOFormAgenda agendamento, Model model) {
         System.out.println("Categoria: " + agendamento.cat());
-        System.out.println("Nome: " + agendamento.nome());
+        System.out.println("servico: " + agendamento.servico());
         System.out.println("Nome: " + agendamento.nome());
         System.out.println("Telefone: " + agendamento.whatsapp());
         System.out.println("Data: " + agendamento.dia());

@@ -10,27 +10,28 @@
 
     <script>
         function mostrarEtapa(numero) {
-        const totalEtapas = 5;
-        for (let i = 1; i <= totalEtapas; i++) {
-            const bloco = document.getElementById('etapa' + i);
-            if (bloco) {
-                bloco.classList.add('d-none');
-            }
-        }
-        const atual = document.getElementById('etapa' + numero);
-        if (atual) {
-            atual.classList.remove('d-none');
-        }
+        console.log('ok');
+                const totalEtapas = 5;
+                for (let i = 1; i <= totalEtapas; i++) {
+                    const bloco = document.getElementById('etapa' + i);
+                    if (bloco) {
+                        bloco.classList.add('d-none');
+                    }
+                }
+                const atual = document.getElementById('etapa' + numero);
+                if (atual) {
+                    atual.classList.remove('d-none');
+                }
 
-        // Controla o botão final
-        const botaoFinal = document.getElementById('botaoFinal');
-        console.log(botaoFinal);
-        if (botaoFinal) {
-            if(numero == 4){
-                botaoFinal.classList.remove('d-none');
+                // Controla o botão final
+                const botaoFinal = document.getElementById('botaoFinal');
+                console.log(botaoFinal);
+                if (botaoFinal) {
+                    if(numero == 5){
+                        botaoFinal.classList.remove('d-none');
+                    }
+                }
             }
-        }
-    }
     </script>
 </head>
 <body>
