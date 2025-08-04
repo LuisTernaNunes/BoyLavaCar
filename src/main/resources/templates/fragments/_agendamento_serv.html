@@ -1,5 +1,5 @@
 <div th:fragment="bloco" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div class="container">
+    <div id="etapa2" class="container d-none">
         <div class="card-body">
             <div class="alert alert-primary text-dark" role="alert">
                 No dia escolhido leve seu carro até o nosso lava rápido ou informe onde buscá-lo.
@@ -16,7 +16,7 @@
                     <label class="btn btn-outline-primary" for="btncheck3">Lavagem de Chassi</label>
                 </div>
                 <div class="d-flex flex-wrap justify-content-center gap-2" role="group" aria-label="Exemplo básico">
-                    <a th:href="@{/agendamento?etapa=2}" class="btn w-100 w-sm-auto" style="background-color: #2A22D1; color: white;">Proximo</a>
+                    <button type="button" onclick="mostrarEtapa(3)" class="btn w-100 w-sm-auto" style="background-color: #2A22D1; color: white;">Próximo</button>
                 </div>
                 <div class="alert alert-primary text-dark" role="alert">
                     Valor Total R$ 50,00

@@ -14,3 +14,24 @@ document.addEventListener('DOMContentLoaded', function() {
                });
            });
 });
+
+  function mostrarEtapa(numero) {
+        const totalEtapas = 5;
+        for (let i = 1; i <= totalEtapas; i++) {
+            const bloco = document.getElementById('etapa' + i);
+            if (bloco) {
+                bloco.classList.add('d-none');
+            }
+        }
+
+        const atual = document.getElementById('etapa' + numero);
+        if (atual) {
+            atual.classList.remove('d-none');
+        }
+
+        // Controla o botão final
+        const botaoFinal = document.getElementById('botaoFinal');
+        if (botaoFinal) {
+            botaoFinal.classList.toggle('d-none', numero != 4);
+        }
+    }

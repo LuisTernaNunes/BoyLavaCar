@@ -7,6 +7,31 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script src="/js/script.js"></script>
+
+    <script>
+        function mostrarEtapa(numero) {
+        const totalEtapas = 5;
+        for (let i = 1; i <= totalEtapas; i++) {
+            const bloco = document.getElementById('etapa' + i);
+            if (bloco) {
+                bloco.classList.add('d-none');
+            }
+        }
+        const atual = document.getElementById('etapa' + numero);
+        if (atual) {
+            atual.classList.remove('d-none');
+        }
+
+        // Controla o botão final
+        const botaoFinal = document.getElementById('botaoFinal');
+        console.log(botaoFinal);
+        if (botaoFinal) {
+            if(numero == 4){
+                botaoFinal.classList.remove('d-none');
+            }
+        }
+    }
+    </script>
 </head>
 <body>
 <div class="container py-4">
@@ -15,18 +40,27 @@
             <img src="../img/logo.png" class="img-fluid rounded" alt="Logo do Lava Rápido Classic Car">
         </div>
         <div class="col-sm-10 col-md-6 col-lg-4">
+            <form id="formAgendamento" th:action="@{/agendamento}" method="post">
             <div class="card shadow">
                 <div class="card-header text-white text-center " style="background-color: #2A22D1; color: white;">
                     <h5 class="mb-0">Agendamento</h5>
                 </div>
-                <form id="formAgendamento" th:action="@{/agendamento}" method="post">
-                    <div th:replace="~{${fragmentPath} :: bloco}"></div>
-                        <div class="d-flex flex-wrap justify-content-center gap-2" th:if="${etapa == '4'}">
-                            <button type="submit" class="btn w-100 w-sm-auto" style="background-color: #2A22D1; color: white;">Enviar</button>
-                        </div>
-                </form>
+
+
+                    <!-- Carrega todos os fragments sem lógica de servidor -->
+                    <div th:replace="~{fragments/_agendamento_cat :: bloco}"></div>
+                    <div   th:replace="~{fragments/_agendamento_serv :: bloco}"></div>
+                    <div   th:replace="~{fragments/_agendamento_data :: bloco}"></div>
+                    <div   th:replace="~{fragments/_agendamento_dados :: bloco}"></div>
+                    <div  th:replace="~{fragments/_agendamento_info :: bloco}"></div>
+
+                    <div id="botaoFinal" class="d-none d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-success">Enviar</button>
+                    </div>
             </div>
+            </form>
         </div>
+
     </main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -17,3 +17,7 @@
     opacity: 1;                /* evita transparência */
     cursor: not-allowed;       /* cursor de bloqueio */
 }
+
+.d-none {
+    display: none !important;
+}

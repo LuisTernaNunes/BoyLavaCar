@@ -20,37 +20,15 @@ public class ControllerAgendamento {
     @GetMapping("/agendamento")
     public String mainPage(@RequestParam(name = "etapa", required = false, defaultValue = "5") String secao,
                            Model model) {
-        String fragmentPath;
-
-        switch (secao) {
-            case "1":
-                fragmentPath = "fragments/_agendamento_serv";
-                break;
-            case "2":
-                fragmentPath = "fragments/_agendamento_data";
-                DTOdata[] datas = data.DiaDisponiveis();
-                model.addAttribute("datas", datas);
-                break;
-            case "3":
-                fragmentPath = "fragments/_agendamento_dados";
-                break;
-            case "4":
-                fragmentPath = "fragments/_agendamento_info";
-                break;
-            case "5":
-            default:
-                fragmentPath = "fragments/_agendamento_cat";
-                break;
-        }
-        model.addAttribute("etapa", secao);
-        model.addAttribute("fragmentPath", fragmentPath);
+        DTOdata[] datas = data.DiaDisponiveis();
+        model.addAttribute("datas", datas);
         return "agendamento";
     }
 
     @PostMapping("/agendamento")
     public String processarFormulario(@ModelAttribute DTOFormAgenda agendamento, Model model) {
         System.out.println("Categoria: " + agendamento.cat());
-        System.out.println("Servico: " + agendamento.servico());
+        System.out.println("Nome: " + agendamento.nome());
         System.out.println("Nome: " + agendamento.nome());
         System.out.println("Telefone: " + agendamento.whatsapp());
         System.out.println("Data: " + agendamento.dia());
@@ -58,6 +36,5 @@ public class ControllerAgendamento {
 
         model.addAttribute("fragmentPath", "fragments/_agendamento_confirmado");
         return "agendamento";
-
     }
 }
