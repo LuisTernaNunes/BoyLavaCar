@@ -21,3 +21,8 @@
 .d-none {
     display: none !important;
 }
+
+.padrao {
+    background-color: #2A22D1 !important;
+    color: white !important;
+}

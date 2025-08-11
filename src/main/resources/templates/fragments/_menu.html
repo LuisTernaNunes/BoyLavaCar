@@ -1,24 +1,25 @@
 <div th:fragment="menu" xmlns:th="http://www.w3.org/1999/xhtml">
 
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
-         style="width: 280px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <div  class="padrao d-flex flex-column flex-shrink-0 p-3"
+         style="width: 280px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
+        <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto ">
             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-            <span class="fs-4">LavaCar</span>
-        </a>
+            <img src="/img/logo.png" alt="LavaCar" class="fs-4" style="height: 40px;">
+        </div>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a th:href="@{/main?secao=Agendamentos}" class="nav-link active text-white" aria-current="page">
+                <a id="Agendamentos" th:href="@{/main?secao=Agendamentos}" class="nav-link text-white">
                     Agendamentos
                 </a>
             </li>
             <li>
-                <a th:href="@{/main?secao=Relatorios}" class="nav-link  text-white">
+                <a id="Relatorios" th:href="@{/main?secao=Relatorios}" class="nav-link  text-white">
                     Relatórios
                 </a>
             </li>
             <li>
-                <a th:href="@{/main?secao=Configurações}" class="nav-link  text-white">
+                <a id="Configurações" th:href="@{/main?secao=Configurações}" class="nav-link  text-white">
                     Configurações
                 </a>
             </li>

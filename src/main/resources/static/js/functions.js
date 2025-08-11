@@ -46,3 +46,4 @@ function somaServco(checkbox){
      document.getElementById("valorTotal").innerText = total;
 }
 
+

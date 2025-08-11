@@ -29,3 +29,17 @@ document.addEventListener('DOMContentLoaded', function() {
                });
            });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const secaoAtual = urlParams.get('secao');
+
+  if (secaoAtual) {
+    const linkAtivo = document.getElementById(secaoAtual);
+    if (linkAtivo) {
+      linkAtivo.classList.add('bg-dark');
+      linkAtivo.classList.remove('text-white');
+      linkAtivo.classList.add('text-light');
+    }
+  }
+});
