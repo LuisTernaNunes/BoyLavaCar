@@ -6,19 +6,19 @@
             </div>
             <form class="row g-2">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Nome Completo</label>
-                    <input type="text" class="form-control" name="nome" id="formGroupExampleInput" placeholder="José Antunes">
+                    <label for="nome" class="form-label">Nome Completo</label>
+                    <input type="text" class="form-control" name="nome" id="nome" placeholder="José Antunes">
                 </div>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Telefone Whatsapp</label>
-                    <input type="tel" class="form-control"  name="whatsapp" id="formGroupExampleInput2" placeholder="00 000000000">
+                    <label for="whats" class="form-label">Telefone Whatsapp</label>
+                    <input type="tel" class="form-control"  name="whatsapp" id="whats" placeholder="00 000000000">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Observações</label>
-                    <textarea class="form-control" name="obs" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="obs" class="form-label">Observações</label>
+                    <textarea class="form-control" name="obs" id="obs" rows="3"></textarea>
                 </div>
                 <div class="d-flex flex-wrap justify-content-center gap-2" role="group" aria-label="Exemplo básico">
-                    <button type="button" onclick="mostrarEtapa(5)" class="btn w-100 w-sm-auto" style="background-color: #2A22D1; color: white;">Próximo</button>
+                    <button type="button" onclick="mostrarEtapa(5); mostrarInfo();" class="btn w-100 w-sm-auto" style="background-color: #2A22D1; color: white;">Próximo</button>
                 </div>
             </form>
         </div>

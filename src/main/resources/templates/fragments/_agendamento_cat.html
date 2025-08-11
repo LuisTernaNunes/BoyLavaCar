@@ -6,14 +6,16 @@
             </div>
             <div class="row g-2">
                 <div class="btn-group-vertical"  role="group" aria-label="Basic checkbox toggle button group">
-                    <input type="radio" class="btn-check" name="cat" value="Moto" id="idmoto" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="idmoto">Moto</label>
+                    <th:block th:each="categoria, iterStat : ${categorias}">
+                        <input type="radio" class="btn-check"
+                               name="cat"
+                               th:value="${categoria.nome}"
+                               th:id="'check' + ${iterStat.index}">
 
-                    <input type="radio" class="btn-check" name="cat" value="Carro" id="idcarro" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="idcarro">Carro</label>
-
-                    <input type="radio" class="btn-check" name="cat" value="Camionete" id="idcamionete" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="idcamionete">Camionete</label>
+                        <label class="btn btn-outline-primary"
+                               th:text="${categoria.nome}"
+                               th:for="'check' + ${iterStat.index}">Moto</label>
+                    </th:block>
                 </div>
                 <div class="d-flex flex-wrap justify-content-center gap-2" role="group" aria-label="Exemplo básico">
                     <button type="button" onclick="mostrarEtapa(2)" class="btn w-100 w-sm-auto" style="background-color: #2A22D1; color: white;">Próximo</button>
