@@ -9,7 +9,7 @@
                     <th:block th:each="categoria, iterStat : ${categorias}">
                         <input type="radio" class="btn-check"
                                name="cat"
-                               th:value="${categoria.nome}"
+                               th:value="${categoria.id}"
                                th:id="'check' + ${iterStat.index}">
 
                         <label class="btn btn-outline-primary"

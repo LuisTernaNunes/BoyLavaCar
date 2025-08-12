@@ -1,4 +1,4 @@
-package br.com.boylavacar.BoyLavaCar.Cliente;
+package br.com.boylavacar.BoyLavaCar.Domain.Cliente;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

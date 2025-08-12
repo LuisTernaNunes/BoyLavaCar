@@ -1,8 +1,8 @@
-package br.com.boylavacar.BoyLavaCar.Agendamento;
+package br.com.boylavacar.BoyLavaCar.Domain.Agendamento;
 
-import br.com.boylavacar.BoyLavaCar.Categoria.Categoria;
-import br.com.boylavacar.BoyLavaCar.Cliente.Cliente;
-import br.com.boylavacar.BoyLavaCar.Servicos.Servico;
+import br.com.boylavacar.BoyLavaCar.Domain.Categoria.Categoria;
+import br.com.boylavacar.BoyLavaCar.Domain.Cliente.Cliente;
+import br.com.boylavacar.BoyLavaCar.Domain.Servicos.Servico;
 import jakarta.persistence.*;
 import lombok.*;
 

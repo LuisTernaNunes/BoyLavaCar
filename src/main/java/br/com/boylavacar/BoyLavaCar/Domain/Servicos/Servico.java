@@ -1,6 +1,6 @@
-package br.com.boylavacar.BoyLavaCar.Servicos;
+package br.com.boylavacar.BoyLavaCar.Domain.Servicos;
 
-import br.com.boylavacar.BoyLavaCar.Categoria.Categoria;
+import br.com.boylavacar.BoyLavaCar.Domain.Categoria.Categoria;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,7 +17,7 @@ public class Servico {
 
     private String nome;
 
-    private BigDecimal valor;
+    private Double valor;
 
     @ManyToOne
     private Categoria categoria;

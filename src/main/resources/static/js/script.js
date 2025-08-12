@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-   const radiosDias = document.querySelectorAll('input[name="btnradio"]');
+   const radiosDias = document.querySelectorAll('input[name="dia"]');
            const containersHoras = document.querySelectorAll('.horas-container');
            radiosDias.forEach((radio, idx) => {
                radio.addEventListener('change', () => {

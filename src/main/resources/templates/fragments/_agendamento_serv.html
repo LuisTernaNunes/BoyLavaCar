@@ -14,7 +14,7 @@
                             <th:block th:each="serv, iterServ : ${cat.servicos}">
                                 <input onclick="somaServco(this)" type="checkbox" class="btn-check"
                                        name="servico"
-                                       th:value="${serv.nome}"
+                                       th:value="${serv.id}"
                                        th:id="'serv' + ${iterStat.index} + '-' + ${iterServ.index}"
                                        th:data-valor="${serv.valor}">
 
