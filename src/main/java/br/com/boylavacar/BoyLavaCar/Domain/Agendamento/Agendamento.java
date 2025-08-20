@@ -16,7 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Agendamento {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDateTime dataAgendamento;

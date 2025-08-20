@@ -11,7 +11,7 @@
                                name="dia"
                                th:id="'btnradio' + ${iterStat.index}"
                                th:value="${dataObj.dia}"
-                               th:checked="${iterStat.index == 0}" autocomplete="off">
+                               th:checked="${iterStat.index == 0}">
 
                         <label class="btn btn-outline-primary btn-sm"
                                th:for="'btnradio' + ${iterStat.index}"
@@ -35,7 +35,7 @@
                                     <input type="radio" class="btn-check"
                                            name="hora"
                                            th:id="'hora-' + ${iterStat.index} + '-' + ${hIndex}"
-                                           th:value="${hora}">
+                                           th:value="${hora}" th:disabled="${marcado}">
 
                                     <label class="btn btn-outline-primary btn-sm"
                                            th:for="'hora-' + ${iterStat.index} + '-' + ${hIndex}"
