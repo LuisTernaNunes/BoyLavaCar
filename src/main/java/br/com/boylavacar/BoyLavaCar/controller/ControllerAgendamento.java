@@ -1,13 +1,20 @@
 package br.com.boylavacar.BoyLavaCar.controller;
 
+import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Agendamento;
+import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.AgendamentoRepository;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.DTO.DTOFormAgenda;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.AgendamentoCategoria;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.AgendamentoData;
+import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.ValidaHorario;
+import br.com.boylavacar.BoyLavaCar.Domain.Categoria.Categoria;
 import br.com.boylavacar.BoyLavaCar.Domain.Categoria.CategoriaRepository;
 import br.com.boylavacar.BoyLavaCar.Domain.Categoria.DTOCategoria;
 import br.com.boylavacar.BoyLavaCar.Datas.Service.DTOdata;
+import br.com.boylavacar.BoyLavaCar.Domain.Categoria.Service.BuscaCategoria;
 import br.com.boylavacar.BoyLavaCar.Domain.Cliente.Cliente;
 import br.com.boylavacar.BoyLavaCar.Domain.Cliente.Service.BuscaCliente;
+import br.com.boylavacar.BoyLavaCar.Domain.Servicos.Service.BuscaServicos;
+import br.com.boylavacar.BoyLavaCar.Domain.Servicos.Servico;
 import br.com.boylavacar.BoyLavaCar.Domain.Servicos.ServicoRepository;
 import br.com.boylavacar.BoyLavaCar.Suporte.ExibeDadosDTO;
 import jakarta.validation.Valid;
@@ -19,7 +26,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ControllerAgendamento {
@@ -32,10 +41,17 @@ public class ControllerAgendamento {
     BuscaCliente buscaCliente;
 
     @Autowired
-    CategoriaRepository categoriaRepository;
+    BuscaCategoria buscaCategoria;
 
     @Autowired
-    ServicoRepository servicoRepository;
+    BuscaServicos buscaServicos;
+
+    @Autowired
+    ValidaHorario validaHorario;
+
+    @Autowired
+    AgendamentoRepository agendamentoRepository;
+
 
     @Autowired
     ExibeDadosDTO exibe;
@@ -46,17 +62,25 @@ public class ControllerAgendamento {
         List<DTOCategoria> servs = categoria.BuscaCategoria();
         model.addAttribute("categorias",servs);
         model.addAttribute("datas", datas);
-        model.addAttribute("marcado", true);
+        model.addAttribute("marcado", false);
         return "agendamento";
     }
 
     @PostMapping("/agendamento")
-    public String processarFormulario(@ModelAttribute @Valid DTOFormAgenda agendamento, Model model) {
+    public String processarFormulario(@ModelAttribute @Valid DTOFormAgenda dados, Model model) {
+        LocalDateTime data = validaHorario.valida(dados);
 
-        Cliente cliente = buscaCliente.existeCliente(agendamento);
+        Cliente cliente = buscaCliente.existeCliente(dados);
 
+        Categoria cat = buscaCategoria.busca(dados);
 
-        exibe.exibeAgendamento(agendamento);
+        List<Servico> servicos = buscaServicos.busca(dados);
+
+        Agendamento agendamento = new Agendamento(data,cliente,cat,servicos,dados.obs());
+        agendamentoRepository.save(agendamento);
+
+        exibe.exibeAgendamento(dados);
+
         model.addAttribute("fragmentPath", "fragments/_agendamento_confirmado");
         return "agendamento";
     }

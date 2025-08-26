@@ -1,0 +1,4 @@
+ALTER TABLE agendamento
+ADD COLUMN status VARCHAR(20),
+ADD COLUMN valor_total DECIMAL(10,2),
+ADD COLUMN observacao VARCHAR(255);

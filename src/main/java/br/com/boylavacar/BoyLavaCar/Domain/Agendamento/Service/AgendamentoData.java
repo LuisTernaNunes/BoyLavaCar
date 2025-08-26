@@ -1,10 +1,13 @@
 package br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service;
 
 import br.com.boylavacar.BoyLavaCar.Datas.Service.DTOdata;
+import br.com.boylavacar.BoyLavaCar.Datas.Service.HoraDisponivel;
+import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.AgendamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,33 +15,37 @@ import java.util.List;
 
 @Service
 public class AgendamentoData {
+    @Autowired
+    AgendamentoRepository repository;
 
     public DTOdata[] DiaDisponiveis() {
-        DTOdata[] dias = new DTOdata[5]; // Tempo de agendamento hoje mais 4 dias futuros
+        DTOdata[] dias = new DTOdata[5];
         LocalDate hoje = LocalDate.now();
-
-        var horaAtual = LocalTime.now();
+        LocalTime horaAtual = LocalTime.now();
 
         for (int i = 0; i < 5; i++) {
             LocalDate data = hoje.plusDays(i);
-            List<LocalTime> horas = new ArrayList<>();
+            List<HoraDisponivel> horas = new ArrayList<>();
 
             if (data.equals(hoje)) {
                 int horaLimite = horaAtual.plusHours(1).getHour();
-
-                if (horaLimite < 17) {
-                    for (int j = horaLimite; j < 17; j++) {
-                        horas.add(LocalTime.of(j, 0));
-                    }
-                    dias[i] = new DTOdata(data, horas);
+                // Garante que só adicione horários até 17h
+                for (int j = Math.max(horaLimite, 8); j < 17; j++) {
+                    horas.add(vereficaHoraDisponivel(LocalDateTime.of(data,LocalTime.of(j, 0))));
                 }
             } else {
                 for (int j = 8; j < 17; j++) {
-                    horas.add(LocalTime.of(j, 0));
+                    horas.add(vereficaHoraDisponivel(LocalDateTime.of(data,LocalTime.of(j, 0))));
                 }
             }
             dias[i] = new DTOdata(data, horas);
         }
+
         return dias;
+    }
+
+    public HoraDisponivel vereficaHoraDisponivel(LocalDateTime hora){
+        var disponibilidade = repository.existsByDataAgendamento(hora);
+        return new HoraDisponivel(hora.toLocalTime(),disponibilidade);
     }
 }

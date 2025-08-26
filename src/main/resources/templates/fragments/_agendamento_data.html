@@ -35,14 +35,13 @@
                                     <input type="radio" class="btn-check"
                                            name="hora"
                                            th:id="'hora-' + ${iterStat.index} + '-' + ${hIndex}"
-                                           th:value="${hora}" th:disabled="${marcado}">
+                                           th:value="${hora.hora}" th:disabled="${hora.disponibilidade}">
 
                                     <label class="btn btn-outline-primary btn-sm"
                                            th:for="'hora-' + ${iterStat.index} + '-' + ${hIndex}"
-                                           th:text="${hora}">
+                                           th:text="${hora.hora}">
                                     </label>
                                 </th:block>
-
                             </div>
                         </th:block>
 

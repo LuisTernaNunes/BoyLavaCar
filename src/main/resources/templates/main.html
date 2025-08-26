@@ -21,9 +21,9 @@
 <div class="d-flex h-100">
     <div th:replace="fragments/_menu :: menu"></div>
 
-    <main style="margin-left: 280px;">
+    <main class="w-100" style="margin-left: 280px;">
         <div class="flex-grow-1 p-4">
-            <nav class="navbar mb-4 rounded text-white px-3 padrao">
+            <nav class="navbar mb-4  text-white px-3 padrao">
                 <span th:text="${secao}" class="navbar-brand mb-0 h1">Painel Principal</span>
             </nav>
             <div th:replace="~{${fragmentPath} :: bloco}"></div>
