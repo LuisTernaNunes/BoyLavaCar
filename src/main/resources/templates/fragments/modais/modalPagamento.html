@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Fragmento do modal -->
+<div th:fragment="modal(agendamento, index)">
+    <div class="modal fade" th:id="${'modalPagamento-' + index}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" th:text="${agendamento.cliente.nome}">Título</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row row-cols-2">
+                            <div class="p-1 col d-flex">
+                                <input type="radio" class="btn-check" th:name="${'pagamento'+index}"  th:id="${'dinheiro'+index}" valeu="dinheiro" autocomplete="off">
+                                <label class="btn btn-primary d-flex flex-column align-items-center justify-content-center w-100 py-4" th:for="${'dinheiro'+index}">
+                                    <img class="me-2 ps-2" src="/img/pagamento/dinheiro.png" alt="Ícone pagamento" style="width:40px; height:40px; margin-bottom:8px;">
+                                    <span class="pe-2">Dinheiro</span>
+                                </label>
+                            </div>
+                            <div class="p-1 col d-flex">
+                                <input type="radio" class="btn-check" th:name="${'pagamento'+index}" value="credito"  th:id="${'credito'+index}" autocomplete="off">
+                                <label class="btn btn-primary d-flex flex-column align-items-center justify-content-center w-100 py-4" th:for="${'credito'+index}">
+                                    <img class="me-2" src="/img/pagamento/cartao.png" alt="Ícone pagamento" style="width:40px; height:40px; margin-bottom:8px;">
+                                    <span>Crédito</span>
+                                </label>
+                            </div>
+                            <div class="p-1 col d-flex">
+                                <input type="radio" class="btn-check" th:name="${'pagamento'+index}" value="debito" th:id="${'debito'+index}" autocomplete="off">
+                                <label class="btn btn-primary d-flex flex-column align-items-center justify-content-center w-100 py-4" th:for="${'debito'+index}">
+                                    <img class="me-2" src="/img/pagamento/cartao.png" alt="Ícone pagamento" style="width:40px; height:40px; margin-bottom:8px;">
+                                    <span>Débito</span>
+                                </label>
+                            </div>
+                            <div class="p-1 col d-flex">
+                                <input type="radio" class="btn-check" th:name="${'pagamento'+index}" value="pix" th:id="${'pix'+index}" autocomplete="off">
+                                <label class="btn btn-primary d-flex flex-column align-items-center justify-content-center w-100 py-4" th:for="${'pix'+index}">
+                                    <img class="me-2" src="/img/pagamento/pix.png" alt="Ícone pagamento" style="width:40px; height:40px; margin-bottom:8px;">
+                                    <span>Pix</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="pe-3 d-flex gap-2">
+                            <div class="col-auto">
+                                <label th:for="'valorPagamento'+'index'" class="visually-hidden">Valor</label>
+                                <input type="number" class="form-control" th:id="'valorPagamento'+ ${index}" th:value="${agendamento.valorTotal}">
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary mb-3" th:onclick="'adicionarPagamento(' + ${index} + ')'">Adicionar Pagamento</button>
+                            </div>
+                        </div>
+                        <table  class="table table-bordered pe-2">
+                            <thead>
+                            <tr>
+                                <th>Método</th>
+                                <th>Valor (R$)</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody th:id="'tabela'+ ${index}">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                    <button type="button" class="btn btn-primary">Finalizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

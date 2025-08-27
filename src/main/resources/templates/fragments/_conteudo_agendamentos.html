@@ -22,12 +22,17 @@
                                 </div>
                             </div>
                             <div class="mt-auto d-flex justify-content-center gap-2">
-                                <a href="#" class="btn btn-success">Pagamentos</a>
+
+                                <button type="button" class="btn btn-success"
+                                        data-bs-toggle="modal"
+                                        th:data-bs-target="'#modalPagamento-' + ${iterStat.index}">
+                                    Pagamentos
+                                </button>
                                 <a href="#" class="btn btn-primary">Editar</a>
-                                <a href="#" class="btn btn-danger">Cancelar</a>
                             </div>
                         </div>
                     </div>
+                    <div th:replace="fragments/modais/modalPagamento :: modal(agendamento=${agendamento}, index=${iterStat.index})"></div>
                 </div>
             </th:block>
 
