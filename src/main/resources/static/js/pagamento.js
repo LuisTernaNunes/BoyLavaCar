@@ -1,7 +1,6 @@
-// Cada modal vai ter seu próprio array de pagamentos
 let pagamentosPorModal = {};
 
-function adicionarPagamento(index) {
+function adicionarPagamento(index,valorTotal,idAgendamento) {
     const metodo = document.querySelector(`input[name="pagamento${index}"]:checked`);
     const valor = document.getElementById("valorPagamento" + index).value;
 
@@ -10,15 +9,28 @@ function adicionarPagamento(index) {
         return;
     }
 
-    // Se não existir ainda, cria a lista para este modal
     if (!pagamentosPorModal[index]) {
         pagamentosPorModal[index] = [];
     }
 
-    // Adiciona pagamento no modal correto
     pagamentosPorModal[index].push({ metodo: metodo.value, valor });
 
     atualizarTabela(index);
+    vereficaPagamento(index,valorTotal);
+
+    fetch("/pagamento", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idAgendamento: idAgendamento, formaPagamento: metodo.value, valorPagamento: valor })
+    })
+    .then(res => {
+        if (res.ok) {
+            console.log("Pagamento salvo com sucesso!");
+        } else {
+            console.error("Erro ao salvar pagamento:", res.status);
+        }
+    })
+    .catch(err => console.error("Erro de rede:", err));
     document.getElementById("valorPagamento" + index).value = "";
 }
 
@@ -47,6 +59,16 @@ function atualizarTabela(index) {
         `;
     });
 
-    // Se quiser enviar para o backend (campo hidden específico por modal)
     // document.getElementById("pagamentosInput" + index).value = JSON.stringify(pagamentosPorModal[index]);
+}
+
+function vereficaPagamento(index,valorTotal){
+    let total = 0;
+        pagamentosPorModal[index].forEach(p => {
+            total += Number(p.valor);
+        });
+
+        const botaoFinalizar = document.getElementById("finalizar" + index);
+        botaoFinalizar.blur();
+        botaoFinalizar.disabled = Math.abs(total - valorTotal) >= 0.01;
 }

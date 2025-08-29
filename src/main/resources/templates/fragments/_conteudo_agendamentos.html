@@ -13,8 +13,7 @@
                             </th:block>
                             <div class="d-flex justify-content-between mb-3">
                                 <div class="card-text mb-0 fw-bold text-success">
-                                    <span>R$: </span>
-                                    <span  th:text="${agendamento.valorTotal}">50,00</span>
+                                    <span  th:text="'R$ ' + ${#numbers.formatDecimal(agendamento.valorTotal, 2, 'COMMA', 2, 'POINT')}">50,00</span>
                                 </div>
                                 <div class="card-text mb-0 text-muted">
                                     <span>Horário:</span>
