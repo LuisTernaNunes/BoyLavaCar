@@ -1,5 +1,4 @@
-<div th:fragment="bloco" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div class="container my-4">
+<div th:fragment="bloco" class="container my-4" xmlns:th="http://www.w3.org/1999/xhtml">
         <div class="row g-3">
             <th:block th:each="agendamento, iterStat : ${dados}">
                 <div th:id="${agendamento.id}" class="col-sm-6 col-md-4 col-lg-3">
@@ -21,8 +20,8 @@
                                 </div>
                             </div>
                             <div class="mt-auto d-flex justify-content-center gap-2">
-
                                 <button type="button" class="btn btn-success"
+                                        th:onclick="'buscaDados(' + ${iterStat.index} + ', ' + ${agendamento.id} + ')'"
                                         data-bs-toggle="modal"
                                         th:data-bs-target="'#modalPagamento-' + ${iterStat.index}">
                                     Pagamentos
@@ -37,4 +36,3 @@
 
         </div>
     </div>
-</div>

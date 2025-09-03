@@ -24,4 +24,9 @@ public class Caixa {
     private List<Pagamento> pagamentos;
     @Enumerated(EnumType.STRING)
     private StatusCaixa status;
+
+    public void adicionaPagamentoCaixa(String valor){
+        this.saldoFinal = this.saldoFinal.add(new BigDecimal(valor));
+    }
 }
+

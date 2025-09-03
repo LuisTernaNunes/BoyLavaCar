@@ -5,6 +5,7 @@ import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.AgendamentoRepository;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.DTO.DTOFormAgenda;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.AgendamentoCategoria;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.AgendamentoData;
+import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.SalvaAgendamento;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.ValidaHorario;
 import br.com.boylavacar.BoyLavaCar.Domain.Categoria.Categoria;
 import br.com.boylavacar.BoyLavaCar.Domain.Categoria.CategoriaRepository;
@@ -32,26 +33,14 @@ import java.util.Optional;
 
 @Controller
 public class ControllerAgendamento {
+
     @Autowired
     AgendamentoData data;
     @Autowired
     AgendamentoCategoria categoria;
 
     @Autowired
-    BuscaCliente buscaCliente;
-
-    @Autowired
-    BuscaCategoria buscaCategoria;
-
-    @Autowired
-    BuscaServicos buscaServicos;
-
-    @Autowired
-    ValidaHorario validaHorario;
-
-    @Autowired
-    AgendamentoRepository agendamentoRepository;
-
+    SalvaAgendamento salvaAgendamento;
 
     @Autowired
     ExibeDadosDTO exibe;
@@ -68,16 +57,8 @@ public class ControllerAgendamento {
 
     @PostMapping("/agendamento")
     public String processarFormulario(@ModelAttribute @Valid DTOFormAgenda dados, Model model) {
-        LocalDateTime data = validaHorario.valida(dados);
 
-        Cliente cliente = buscaCliente.existeCliente(dados);
-
-        Categoria cat = buscaCategoria.busca(dados);
-
-        List<Servico> servicos = buscaServicos.busca(dados);
-
-        Agendamento agendamento = new Agendamento(data,cliente,cat,servicos,dados.obs());
-        agendamentoRepository.save(agendamento);
+        salvaAgendamento.Salvar(dados);
 
         exibe.exibeAgendamento(dados);
 

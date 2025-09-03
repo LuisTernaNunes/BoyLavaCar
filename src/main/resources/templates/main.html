@@ -10,8 +10,6 @@
     <script src="/js/script.js"></script>
     <script src="/js/functions.js"></script>
     <script src="/js/pagamento.js"></script>
-
-
     <title>LavaCar</title>
     <style>
         body, html {
@@ -25,15 +23,15 @@
     <div th:replace="fragments/_menu :: menu"></div>
 
     <main class="w-100" style="margin-left: 280px;">
-        <div class="flex-grow-1 p-4">
+        <div name="div main" class="flex-grow-1 p-4">
             <nav class="navbar mb-4  text-white px-3 padrao">
                 <span th:text="${secao}" class="navbar-brand mb-0 h1">Painel Principal</span>
             </nav>
-            <div th:replace="~{${fragmentPath} :: bloco}"></div>
+            <div id="agendamentoContainer" th:replace="~{${fragmentPath} :: bloco}"></div>
         </div>
     </main>
 </div>
-
+<script src="/js/atualizaPaginaAgendamento.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
