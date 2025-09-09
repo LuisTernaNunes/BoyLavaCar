@@ -1,24 +1,54 @@
 <div th:fragment="bloco" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div id="etapa5" class="container d-none">
-        <div class="card-body">
-            <div class="alert alert-primary" role="alert">
-                <div class="d-flex align-items-center mb-3">
-                    <img th:src="@{/img/id-card.png}" alt="Ícone de identidade" class="info-icon me-2" style="width: 40px; height: 40px;">
-                    <div class="text-dark"><p class="fw-bold" id="infoNome">João da Silva</p></div>
+    <div id="confirmacao" class="container d-none">
+        <div class="card-body card-custom mx-auto" style="max-width: 360px;">
+
+            <!-- Nome -->
+                <div class="d-flex align-items-center bg-light rounded p-2 mb-3">
+                    <img th:src="@{/img/id-card.png}" alt="Ícone de identidade"
+                         class="me-2" style="width: 28px; height: 28px;">
+                    <p class="fw-semibold mb-0 text-dark" id="infoNome">João da Silva</p>
                 </div>
-                <div class="d-flex align-items-center mb-3">
-                    <img th:src="@{/img/whatsapp.png}" alt="Ícone WhatsApp" class="info-icon me-2" style="width: 40px; height: 40px;">
-                    <div class="text-dark"><p class="fw-bold" id="infoWhats">40 99900-0000</p></div>
+
+                <!-- WhatsApp -->
+                <div class="d-flex align-items-center bg-light rounded p-2 mb-3">
+                    <img th:src="@{/img/whatsapp.png}" alt="Ícone WhatsApp"
+                         class="me-2" style="width: 28px; height: 28px;">
+                    <p class="fw-semibold mb-0 text-dark" id="infoWhats">40 99900-0000</p>
                 </div>
-                <div class="d-flex align-items-center mb-3">
-                    <img th:src="@{/img/calendar.png}" alt="Ícone calendário" class="info-icon me-2" style="width: 40px; height: 40px;">
-                    <div class="text-dark"><p class="fw-bold" id="infoData">25/07 às 14:30</p></div>
+
+                <!-- Data -->
+                <div class="d-flex align-items-center bg-light rounded p-2 mb-3">
+                    <img th:src="@{/img/calendar.png}" alt="Ícone calendário"
+                         class="me-2" style="width: 28px; height: 28px;">
+                    <p class="fw-semibold mb-0 text-dark" id="infoData">25/07 às 14:30</p>
                 </div>
-                <div class="d-flex align-items-center mb-3">
-                    <img th:src="@{/img/dollar.png}" alt="Ícone valor" class="info-icon me-2" style="width: 40px; height: 40px;">
-                    <div class="text-dark"><p class="fw-bold" id="infoValor">R$ 70,00</p></div>
+
+                <!-- Valor -->
+                <div class="d-flex align-items-center bg-light rounded p-2 mb-3">
+                    <img th:src="@{/img/dollar.png}" alt="Ícone valor"
+                         class="me-2" style="width: 28px; height: 28px;">
+                    <p class="fw-semibold mb-0 text-dark" id="infoValor">R$ 70,00</p>
                 </div>
+
+                <!-- Botão -->
+                <button onclick="mostrarEtapa('confirmado'); enviaAgendamento();" class="btn btn-success w-100 rounded-pill fw-semibold">
+                    <i class="fas fa-paper-plane"></i> Enviar
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Estilos extras -->
+<style>
+    .card-custom {
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .card-header-custom {
+      background: linear-gradient(135deg, #4a00e0, #8e2de2);
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+</style>

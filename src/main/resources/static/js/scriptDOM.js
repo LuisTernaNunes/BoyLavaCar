@@ -43,3 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+document.addEventListener("DOMContentLoaded", function(){
+    const inputWhats = document.getElementById("whats");
+    if (!inputWhats) return;
+
+    inputWhats.addEventListener("input", function(e){
+        let valor = inputWhats.value.replace(/\D/g, "");
+        if (valor.length > 0) {
+            valor = valor.replace(/^(\d{2})(\d)/g, "($1) $2");
+            valor = valor.replace(/(\d{5})(\d{1,4})$/, "$1-$2");
+        }
+        inputWhats.value = valor;
+    });
+});

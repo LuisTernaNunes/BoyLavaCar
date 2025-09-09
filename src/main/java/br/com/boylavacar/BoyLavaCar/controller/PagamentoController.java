@@ -31,7 +31,6 @@ public class PagamentoController {
     @GetMapping("/pagamento")
     public List<Pagamento> buscarPagamentos(@RequestParam Long agendamentoId) {
         List<Pagamento> pagamentos = pagamentoRepository.findAllByAgendamento_Id(agendamentoId);
-        pagamentos.forEach(p-> System.out.println(p.getForma()));
         return pagamentos;
     }
 }

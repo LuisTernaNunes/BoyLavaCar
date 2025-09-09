@@ -12,7 +12,7 @@ public class BuscaCliente {
     ClienteRepository clienteRepository;
 
     public Cliente existeCliente(DTOFormAgenda dados){
-        var optionalCliente = clienteRepository.findByTelefone(dados.whatsapp());
+        var optionalCliente = clienteRepository.findByTelefone(dados.whats());
         if(optionalCliente.isPresent()){
             System.out.println("cliente ja salvo");
             return optionalCliente.get();

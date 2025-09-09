@@ -14,7 +14,7 @@ public class BuscaCategoria {
     CategoriaRepository categoriaRepository;
 
     public Categoria busca(DTOFormAgenda dados){
-       Optional<Categoria> cat = categoriaRepository.findById(Long.valueOf(dados.cat()));
+       Optional<Categoria> cat = categoriaRepository.findById(Long.valueOf(dados.categoria()));
        return cat.get();
     }
 }

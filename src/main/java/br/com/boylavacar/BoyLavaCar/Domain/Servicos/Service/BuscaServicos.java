@@ -17,7 +17,7 @@ public class BuscaServicos {
     ServicoRepository servicoRepository;
 
     public List<Servico> busca(DTOFormAgenda dados){
-        List<String> servicosId = Arrays.asList(dados.servico().split(","));
+        List<String> servicosId = dados.servico();
         List<Servico> sevicos = new ArrayList<>();
         for (int i = 0; i < servicosId.size(); i++) {
             Optional<Servico> ser =  servicoRepository.findById(Long.valueOf(servicosId.get(i)));

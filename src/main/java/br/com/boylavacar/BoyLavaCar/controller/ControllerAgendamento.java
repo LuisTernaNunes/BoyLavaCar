@@ -20,12 +20,10 @@ import br.com.boylavacar.BoyLavaCar.Domain.Servicos.ServicoRepository;
 import br.com.boylavacar.BoyLavaCar.Suporte.ExibeDadosDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -56,13 +54,8 @@ public class ControllerAgendamento {
     }
 
     @PostMapping("/agendamento")
-    public String processarFormulario(@ModelAttribute @Valid DTOFormAgenda dados, Model model) {
-
+    public ResponseEntity processarFormulario(@RequestBody @Valid DTOFormAgenda dados) {
         salvaAgendamento.Salvar(dados);
-
-        exibe.exibeAgendamento(dados);
-
-        model.addAttribute("fragmentPath", "fragments/_agendamento_confirmado");
-        return "agendamento";
+        return ResponseEntity.ok().build();
     }
 }

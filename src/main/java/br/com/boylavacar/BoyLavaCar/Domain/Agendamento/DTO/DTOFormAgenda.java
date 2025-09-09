@@ -1,4 +1,6 @@
 package br.com.boylavacar.BoyLavaCar.Domain.Agendamento.DTO;
 
-public record DTOFormAgenda(String cat, String servico, String dia, String hora, String nome ,String whatsapp, String obs) {
+import java.util.List;
+
+public record DTOFormAgenda(String categoria, List<String> servico, String nome, String whats, String dia , String hora, String obs) {
 }

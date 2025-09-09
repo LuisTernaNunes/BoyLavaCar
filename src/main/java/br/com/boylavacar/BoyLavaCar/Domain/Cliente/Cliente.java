@@ -21,7 +21,7 @@ public class Cliente {
     private String telefone;
 
     public Cliente(DTOFormAgenda dados) {
-        this.telefone = dados.whatsapp();
+        this.telefone = dados.whats();
         this.nome = dados.nome();
     }
 }

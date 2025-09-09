@@ -1,15 +1,17 @@
 <div th:fragment="bloco" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div id="etapa2" class="container d-none">
+    <div id="servico" class="container d-none">
         <div class="card-body">
             <div class="alert alert-primary text-dark" role="alert">
                 No dia escolhido leve seu carro até o nosso lava rápido ou informe onde buscá-lo.
             </div>
+
             <div class="row g-2">
-                <div class="btn-group-vertical"  role="group" aria-label="Basic checkbox toggle button group">
+                <!-- Wrapper principal dos serviços -->
+                <div class="serv-wrapper d-flex flex-wrap justify-content-center gap-2" role="group">
                     <th:block th:each="cat, iterStat : ${categorias}">
                         <div th:id="'serv-' + ${iterStat.index}"
                              th:classappend="${iterStat.index != 0} ? 'd-none' : ''"
-                             class="serv-container d-flex flex-wrap gap-2 justify-content-center">
+                             class="serv-container text-center">
 
                             <th:block th:each="serv, iterServ : ${cat.servicos}">
                                 <input onclick="somaServco(this)" type="checkbox" class="btn-check"
@@ -25,10 +27,17 @@
                         </div>
                     </th:block>
                 </div>
-                <div class="d-flex flex-wrap justify-content-center gap-2" role="group" aria-label="Exemplo básico">
-                    <button type="button" onclick="mostrarEtapa(3)" class="btn w-100 w-sm-auto" style="background-color: #2A22D1; color: white;">Próximo</button>
+
+                <!-- Botão próximo -->
+                <div class="d-flex flex-wrap justify-content-center gap-2 mt-3" role="group">
+                    <button type="button" onclick="mostrarEtapa('data')" class="btn w-100 w-sm-auto"
+                            style="background-color: #2A22D1; color: white;">
+                        Próximo
+                    </button>
                 </div>
-                <div class="alert alert-primary text-dark d-flex align-items-center gap-2" role="alert">
+
+                <!-- Valor total -->
+                <div class="alert alert-primary text-dark d-flex align-items-center gap-2 mt-2" role="alert">
                     <p class="mb-0">Valor Total R$</p>
                     <p class="mb-0" id="valorTotal">0</p>
                 </div>
@@ -36,3 +45,13 @@
         </div>
     </div>
 </div>
+
+<!-- CSS extra para centralizar os labels -->
+<style>
+    .serv-container label {
+        display: inline-block;
+        margin: 5px;
+        min-width: 180px;  /* opcional para alinhamento */
+        text-align: center;
+    }
+</style>

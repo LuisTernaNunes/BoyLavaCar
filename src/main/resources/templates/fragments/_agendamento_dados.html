@@ -1,5 +1,5 @@
 <div th:fragment="bloco" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div id="etapa4" class="container d-none">
+    <div id="dados" class="container d-none">
         <div class="card-body">
             <div class="alert alert-primary text-dark" role="alert">
                 No dia escolhido leve seu carro até o nosso lava rápido ou informe onde buscá-lo.
@@ -18,7 +18,7 @@
                     <textarea class="form-control" name="obs" id="obs" rows="3"></textarea>
                 </div>
                 <div class="d-flex flex-wrap justify-content-center gap-2" role="group" aria-label="Exemplo básico">
-                    <button type="button" onclick="mostrarEtapa(5); mostrarInfo();" class="btn w-100 w-sm-auto" style="background-color: #2A22D1; color: white;">Próximo</button>
+                    <button type="button" onclick="mostrarEtapa('confirmacao'); mostrarInfo();" class="btn w-100 w-sm-auto" style="background-color: #2A22D1; color: white;">Próximo</button>
                 </div>
             </form>
         </div>
