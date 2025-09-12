@@ -57,3 +57,57 @@ document.addEventListener("DOMContentLoaded", function(){
         inputWhats.value = valor;
     });
 });
+
+document.addEventListener("DOMContentLoaded", function(){
+  const secaoSpan = document.getElementById("navBarSecao");
+  const secao = secaoSpan.textContent.trim();
+
+    if (secao === "Agendamentos") {
+        // Criar container do dropdown
+        const dropdown = document.createElement("div");
+        dropdown.classList.add("dropdown", "ms-3"); // ms-3 = margem esquerda
+
+        // Botão do dropdown
+        const button = document.createElement("button");
+        button.className = "btn btn-secondary dropdown-toggle";
+        button.type = "button";
+        button.id = "dropdownAgendamento";
+        button.setAttribute("data-bs-toggle", "dropdown");
+        button.setAttribute("aria-expanded", "false");
+        button.textContent = "Hoje";
+
+        // Menu do dropdown
+        const menu = document.createElement("ul");
+        menu.className = "dropdown-menu";
+        menu.setAttribute("aria-labelledby", "dropdownAgendamento");
+
+        const opcoes = [
+            { text: "Anteriores", action: () => filtrarAgendamento("anteriores")},
+            { text: "Hoje",  action: () => filtrarAgendamento("hoje") },
+            { text: "Amanhã",  action: () => filtrarAgendamento("amanha") },
+            { text: "Proximos Dias",  action: () => filtrarAgendamento("Proximos Dias") }
+        ];
+
+          opcoes.forEach(op => {
+                  const li = document.createElement("li");
+                  const a = document.createElement("a");
+                  a.className = "dropdown-item";
+                  a.href = "javascript:void(0)";
+                  a.textContent = op.text;
+                  a.addEventListener("click", () => {
+                   op.action();
+                   button.textContent = op.text;
+                  });
+                  li.appendChild(a);
+                  menu.appendChild(li);
+              });
+
+        // Montar dropdown
+        dropdown.appendChild(button);
+        dropdown.appendChild(menu);
+
+        // Adicionar ao lado do span
+        secaoSpan.parentNode.appendChild(dropdown);
+    }
+});
+

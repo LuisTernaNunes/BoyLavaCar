@@ -1,6 +1,5 @@
-const pagamentosAtuais = {}; // Mantém os pagamentos temporários por modal
+const pagamentosAtuais = {};
 
-// Adicionar pagamento
 function adicionarPagamento(index, idAgendamento) {
     const metodoInput = document.querySelector(`input[name="pagamento${index}"]:checked`);
     const valorInput = document.getElementById("valorPagamento" + index).value;
@@ -40,7 +39,6 @@ function adicionarPagamento(index, idAgendamento) {
     document.getElementById("valorPagamento" + index).value = "";
 }
 
-// Atualizar tabela de pagamentos
 function atualizarTabela(index) {
     const lista = document.getElementById("tabela" + index);
     lista.innerHTML = "";
@@ -64,8 +62,6 @@ function atualizarTabela(index) {
     });
 }
 
-// Verifica botão Finalizar
-
 function verificaPagamento(index) {
     const valorTotal = parseFloat(
         document.getElementById("valorTotal" + index).textContent.replace(',', '.')
@@ -80,19 +76,13 @@ function verificaPagamento(index) {
     // Se o total já bateu com o valor do agendamento, desabilita adicionar
     adicionarPagamentoBtn.disabled = total >= valorTotal;
 
-    console.log(total);
-    console.log(document.getElementById("valorTotal" + index).textContent);
-
     // Botão finalizar habilitado somente se houver pagamentos e total bate
     botaoFinalizar.blur();
     botaoFinalizar.disabled = pagamentos.length === 0 || Math.abs(total - valorTotal) >= 0.01;
 }
 
-
-
-// Buscar pagamentos do backend ao abrir modal
 function buscaDados(index, idAgendamento) {
-    pagamentosAtuais[index] = []; // Reseta array do modal
+    pagamentosAtuais[index] = [];
 
     fetch(`/pagamento?agendamentoId=${idAgendamento}`)
         .then(res => {
@@ -102,7 +92,9 @@ function buscaDados(index, idAgendamento) {
         .then(data => {
             data.forEach(p => {
                 pagamentosAtuais[index].push({
-                    metodo: p.forma,
+                    idPagamento: p.id,
+                    idAgendamento: p.idAgendamento,
+                    metodo: p.metodo,
                     valor: parseFloat(p.valor)
                 });
             });
@@ -112,22 +104,33 @@ function buscaDados(index, idAgendamento) {
         .catch(err => console.error("Erro no fetch:", err));
 }
 
-// Remover pagamento
 function removerPagamento(index, i) {
     if (!pagamentosAtuais[index]) return;
 
     const pagamentoRemovido = pagamentosAtuais[index].splice(i, 1)[0];
-
-    // Atualiza UI e botão
     atualizarTabela(index);
     verificaPagamento(index);
 
-    // Opcional: remover também do backend
-    fetch(`/pagamento/${pagamentoRemovido.id}`, {
+
+
+    fetch(`/pagamento/${pagamentoRemovido.idPagamento}`, {
         method: "DELETE"
     })
     .then(res => {
         if (!res.ok) console.error("Erro ao remover pagamento:", res.status);
+    })
+    .catch(err => console.error("Erro de rede:", err));
+}
+
+function finalizar(idAgendamento){
+    fetch("/pagamento/finalizar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: idAgendamento })
+    })
+    .then(res => {
+        if (res.ok) window.location.reload();
+        else console.error("Erro ao finalizar agendamento:", res.status);
     })
     .catch(err => console.error("Erro de rede:", err));
 }

@@ -69,7 +69,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-                    <button th:id="'finalizar'+ ${index}" type="button" class="btn btn-primary" disabled>Finalizar</button>
+                    <button th:id="'finalizar'+ ${index}" th:onclick="'finalizar(' + ${agendamento.id} + ')'"  type="button" class="btn btn-primary" disabled>Finalizar</button>
                 </div>
             </div>
         </div>

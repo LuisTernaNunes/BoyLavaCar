@@ -3,10 +3,7 @@ package br.com.boylavacar.BoyLavaCar.controller;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Agendamento;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.AgendamentoRepository;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.DTO.DTOFormAgenda;
-import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.AgendamentoCategoria;
-import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.AgendamentoData;
-import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.SalvaAgendamento;
-import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.ValidaHorario;
+import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.*;
 import br.com.boylavacar.BoyLavaCar.Domain.Categoria.Categoria;
 import br.com.boylavacar.BoyLavaCar.Domain.Categoria.CategoriaRepository;
 import br.com.boylavacar.BoyLavaCar.Domain.Categoria.DTOCategoria;
@@ -27,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -40,8 +38,6 @@ public class ControllerAgendamento {
     @Autowired
     SalvaAgendamento salvaAgendamento;
 
-    @Autowired
-    ExibeDadosDTO exibe;
     @GetMapping("/agendamento")
     public String mainPage(@RequestParam(name = "etapa", required = false, defaultValue = "5") String secao,
                            Model model) {
@@ -58,4 +54,5 @@ public class ControllerAgendamento {
         salvaAgendamento.Salvar(dados);
         return ResponseEntity.ok().build();
     }
+
 }

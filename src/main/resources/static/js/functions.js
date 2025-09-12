@@ -98,11 +98,15 @@ function recuperaDados(){
         servico: servicosSelecionados,
         nome: document.getElementById("nome").value,
         whats: document.getElementById("whats").value,
-        dia: document.querySelector('input[name="dia"]').value,
-        hora: document.querySelector('input[name="hora"]').value,
+        dia: document.querySelector('input[name="dia"]:checked')?.value,
+        hora: document.querySelector('input[name="hora"]:checked')?.value,
         obs: document.getElementById("obs").value
     };
     console.log(agendamento);
     return agendamento;
+}
+
+function filtrarAgendamento(dia){
+ console.log(dia)
 }
 
