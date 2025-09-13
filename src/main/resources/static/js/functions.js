@@ -1,5 +1,7 @@
 function mostrarEtapa(etapa) {
     const etapas = ["categoria", "servico", "data", "dados", "confirmacao", "confirmado"];
+
+    console.log(etapa);
     switch (etapa) {
             case "servico":
                 if (!document.querySelector('input[name="cat"]:checked')) {
@@ -15,7 +17,7 @@ function mostrarEtapa(etapa) {
                 }
                 break;
 
-            case "confirmacao":
+            case "dados":
                 const dia = document.getElementsByName("dia")[0].value;
                 const hora = document.getElementsByName("hora")[0].value;
                 if (!dia || !hora) {
@@ -24,7 +26,7 @@ function mostrarEtapa(etapa) {
                 }
                 break;
 
-            case "confirmado":
+            case "confirmacao":
                 const nome = document.getElementById("nome").value;
                 const whats = document.getElementById("whats").value;
                 if (!nome || !whats) {
