@@ -3,6 +3,7 @@ package br.com.boylavacar.BoyLavaCar.Domain.Categoria;
 import br.com.boylavacar.BoyLavaCar.Domain.Servicos.Servico;
 import jakarta.persistence.*;
 
+import jakarta.validation.Valid;
 import lombok.*;
 
 import java.util.List;
@@ -23,4 +24,7 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria")
     private List<Servico> servicos;
 
+    public Categoria(@Valid FormCategoria dados) {
+        this.nome = dados.nomeCategoria();
+    }
 }

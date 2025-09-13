@@ -1,4 +1,12 @@
 <div th:fragment="bloco" xmlns:th="http://www.w3.org/1999/xhtml">
     <h2>Relatorios</h2>
     <p>Conteúdo de agendamentos aqui.</p>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadCategoria">
+        Cadastrar Categoria
+    </button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#servicos">
+        Cadastrar Serviço
+    </button>
+    <div th:replace="fragments/modais/modalServicos :: servicosModal"></div>
+    <div th:replace="fragments/modais/modalCategoria :: categoriaModal"></div>
 </div>

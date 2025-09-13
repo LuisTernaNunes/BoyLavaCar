@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="servicosModal">
+    <div class="modal fade" id="servicos" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" text="Serviços">Título</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <!-- Formulário -->
+                        <form th:action="@{/servicos}" method="post">
+                            <!-- Select de categorias -->
+                            <div class="mb-3">
+                                <label for="categoria" class="form-label">Categoria</label>
+                                <select class="form-select" id="categoria" name="categoriaId" required>
+                                    <option value="" disabled selected>Selecione uma categoria</option>
+                                    <option th:each="cat : ${categorias}"
+                                            th:value="${cat.id}"
+                                            th:text="${cat.nome}"></option>
+                                </select>
+                            </div>
+
+                            <!-- Input nome -->
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do produto" required>
+                            </div>
+
+                            <!-- Input valor -->
+                            <div class="mb-3">
+                                <label for="valor" class="form-label">Valor</label>
+                                <input type="text" class="form-control" id="valor" name="valor" placeholder="Digite o valor" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
