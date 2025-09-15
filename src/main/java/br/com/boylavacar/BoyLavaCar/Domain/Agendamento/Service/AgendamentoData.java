@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,8 +21,8 @@ public class AgendamentoData {
 
     public DTOdata[] DiaDisponiveis() {
         DTOdata[] dias = new DTOdata[5];
-        LocalDate hoje = LocalDate.now();
-        LocalTime horaAtual = LocalTime.now();
+        LocalDate hoje = LocalDate.now(ZoneId.of("America/Sao_Paulo"));
+        LocalTime horaAtual = LocalTime.now(ZoneId.of("America/Sao_Paulo"));
 
         for (int i = 0; i < 5; i++) {
             LocalDate data = hoje.plusDays(i);
@@ -29,7 +30,6 @@ public class AgendamentoData {
 
             if (data.equals(hoje)) {
                 int horaLimite = horaAtual.plusHours(1).getHour();
-                // Garante que só adicione horários até 17h
                 for (int j = Math.max(horaLimite, 8); j < 17; j++) {
                     horas.add(vereficaHoraDisponivel(LocalDateTime.of(data,LocalTime.of(j, 0))));
                 }
