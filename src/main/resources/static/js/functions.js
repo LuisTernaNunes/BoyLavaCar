@@ -107,8 +107,3 @@ function recuperaDados(){
     console.log(agendamento);
     return agendamento;
 }
-
-function filtrarAgendamento(dia){
- console.log(dia)
-}
-

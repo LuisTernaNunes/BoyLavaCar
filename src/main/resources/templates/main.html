@@ -26,6 +26,20 @@
         <div name="div main" class="flex-grow-1 p-4">
             <nav class="navbar mb-4  text-white px-3 padrao">
                 <span id="navBarSecao" th:text="${secao}" class="navbar-brand mb-0 h1">Painel Principal</span>
+                <form action="/main" method="post">
+                    <div class="dropdown ms-3">
+                        <!-- Botão do dropdown -->
+                        <button class="btn btn-secondary dropdown-toggle d-none" type="button" id="dropdownAgendamento" data-bs-toggle="dropdown" aria-expanded="false">
+                            Agendamentos
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownAgendamento">
+                            <li><button class="dropdown-item" type="submit" name="filtro" value="Anteriores">Anteriores</button></li>
+                            <li><button class="dropdown-item" type="submit" name="filtro" value="Hoje">Hoje</button></li>
+                            <li><button class="dropdown-item" type="submit" name="filtro" value="Amanha">Amanhã</button></li>
+                            <li><button class="dropdown-item" type="submit" name="filtro" value="Futuros">Próximos Dias</button></li>
+                        </ul>
+                    </div>
+                </form>
             </nav>
             <div id="agendamentoContainer" th:replace="~{${fragmentPath} :: bloco}"></div>
         </div>

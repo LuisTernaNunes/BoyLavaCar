@@ -22,5 +22,4 @@ public class ControllerServicos {
         cadServico.CadastraServico(dados);
         return ResponseEntity.ok().build();
     }
-
 }
