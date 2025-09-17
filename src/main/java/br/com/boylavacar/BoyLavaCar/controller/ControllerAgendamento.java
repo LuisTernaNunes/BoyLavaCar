@@ -51,6 +51,7 @@ public class ControllerAgendamento {
 
     @PostMapping("/agendamento")
     public ResponseEntity processarFormulario(@RequestBody @Valid DTOFormAgenda dados) {
+        System.out.println(dados.nome());
         salvaAgendamento.Salvar(dados);
         return ResponseEntity.ok().build();
     }

@@ -60,7 +60,6 @@ public class ControllerMain {
     @GetMapping("/agendamentos")
     public String filtraAgendamento(@RequestParam(required = false) String filtro, Model model){
         List<Agendamento> agendamentos = carregaAgendamento.buscaAgendamentoDia(filtro);
-        agendamentos.forEach(a -> System.out.println(a.getCliente()));
         model.addAttribute("dados", agendamentos);
         model.addAttribute("secao", "Agendamentos");
         model.addAttribute("fragmentPath", "fragments/_conteudo_agendamentos");

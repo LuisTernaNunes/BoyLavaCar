@@ -18,7 +18,6 @@ public class ControllerCategoria {
 
     @PostMapping("/categoria")
     public ResponseEntity processarFormulario(@ModelAttribute @Valid FormCategoria dados) {
-        System.out.println(dados.nomeCategoria());
         Categoria categoria = new Categoria(dados);
         categoriaRepository.save(categoria);
         return ResponseEntity.ok().build();

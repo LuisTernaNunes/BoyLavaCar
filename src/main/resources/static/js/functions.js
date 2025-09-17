@@ -18,8 +18,8 @@ function mostrarEtapa(etapa) {
                 break;
 
             case "dados":
-                const dia = document.getElementsByName("dia")[0].value;
-                const hora = document.getElementsByName("hora")[0].value;
+                const dia = document.querySelector('input[name="dia"]:checked');
+                const hora = document.querySelector('input[name="hora"]:checked');
                 if (!dia || !hora) {
                     alert("Escolha dia e hora antes de prosseguir!");
                     return;

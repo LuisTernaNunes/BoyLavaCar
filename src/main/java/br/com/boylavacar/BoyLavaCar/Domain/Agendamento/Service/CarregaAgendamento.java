@@ -43,7 +43,6 @@ public class CarregaAgendamento {
             case "Futuros":
                 inicio = LocalDate.now().plusDays(2).atStartOfDay();
                 fim = LocalDate.now().plusDays(9).atStartOfDay();
-                System.out.println("Busca Futuros");
                 break;
             default:
                 inicio = LocalDate.now().atStartOfDay();
