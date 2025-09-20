@@ -1,4 +1,4 @@
-package br.com.boylavacar.BoyLavaCar.Datas.Service;
+package br.com.boylavacar.BoyLavaCar.Domain.Datas.Service;
 
 import java.time.LocalTime;
 import java.util.List;

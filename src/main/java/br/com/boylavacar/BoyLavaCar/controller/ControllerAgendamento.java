@@ -1,20 +1,9 @@
 package br.com.boylavacar.BoyLavaCar.controller;
 
-import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Agendamento;
-import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.AgendamentoRepository;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.DTO.DTOFormAgenda;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.*;
-import br.com.boylavacar.BoyLavaCar.Domain.Categoria.Categoria;
-import br.com.boylavacar.BoyLavaCar.Domain.Categoria.CategoriaRepository;
 import br.com.boylavacar.BoyLavaCar.Domain.Categoria.DTOCategoria;
-import br.com.boylavacar.BoyLavaCar.Datas.Service.DTOdata;
-import br.com.boylavacar.BoyLavaCar.Domain.Categoria.Service.BuscaCategoria;
-import br.com.boylavacar.BoyLavaCar.Domain.Cliente.Cliente;
-import br.com.boylavacar.BoyLavaCar.Domain.Cliente.Service.BuscaCliente;
-import br.com.boylavacar.BoyLavaCar.Domain.Servicos.Service.BuscaServicos;
-import br.com.boylavacar.BoyLavaCar.Domain.Servicos.Servico;
-import br.com.boylavacar.BoyLavaCar.Domain.Servicos.ServicoRepository;
-import br.com.boylavacar.BoyLavaCar.Suporte.ExibeDadosDTO;
+import br.com.boylavacar.BoyLavaCar.Domain.Datas.Service.DTOdata;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Controller
 public class ControllerAgendamento {
@@ -41,7 +27,7 @@ public class ControllerAgendamento {
     @GetMapping("/agendamento")
     public String mainPage(@RequestParam(name = "etapa", required = false, defaultValue = "5") String secao,
                            Model model) {
-        DTOdata[] datas = data.DiaDisponiveis();
+        List<DTOdata> datas = data.DiaDisponiveis();
         List<DTOCategoria> servs = categoria.BuscaCategoria();
         model.addAttribute("categorias",servs);
         model.addAttribute("datas", datas);
