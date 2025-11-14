@@ -2,7 +2,6 @@ package br.com.boylavacar.BoyLavaCar.controller;
 
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Agendamento;
 import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.Service.CarregaAgendamento;
-import br.com.boylavacar.BoyLavaCar.Domain.Agendamento.StatusAgendamento;
 import br.com.boylavacar.BoyLavaCar.Domain.Categoria.CarregaCategorias;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -27,25 +23,11 @@ public class ControllerMain {
 
 
     @GetMapping("/main")
-    public String mainPage(@RequestParam(name = "secao", required = false, defaultValue = "Agendamentos") String secao,
-                           Model model) {
+    public String mainPage(Model model) {
         String fragmentPath;
-
-        switch (secao) {
-            case "Relatorios":
-                fragmentPath = "fragments/_conteudo_relatorios";
-                break;
-            case "Configurações":
-                fragmentPath = "fragments/_conteudo_configuracoes";
-                model.addAttribute("categorias", carregaCategorias.buscaCategorias());
-                break;
-            case "Agendamentos":
-            default:
-                fragmentPath = "fragments/_conteudo_agendamentos";
-                model.addAttribute("dados", carregaAgendamento.buscaAgendamento());
-                break;
-        }
-        model.addAttribute("secao", secao);
+        fragmentPath = "fragments/_conteudo_agendamentos";
+        model.addAttribute("dados", carregaAgendamento.buscaAgendamentoDia("Hoje"));
+        model.addAttribute("secao", "Agendamentos");
         model.addAttribute("fragmentPath", fragmentPath);
         return "main";
     }
@@ -65,4 +47,6 @@ public class ControllerMain {
         model.addAttribute("fragmentPath", "fragments/_conteudo_agendamentos");
         return "main";
     }
+
+
 }

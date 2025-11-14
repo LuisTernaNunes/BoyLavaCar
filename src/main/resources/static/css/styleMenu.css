@@ -1,0 +1,47 @@
+.mysidebar{
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    top: 0; left: 0;
+    overflow-y: auto;
+      padding-top: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      transition: transform 0.3s ease-in-out;
+}
+.mysidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.mysidebar ul li {
+  padding: 15px;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #222;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1001;
+}
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Esconde o menu lateral fora da tela */
+  .mysidebar {
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+
+  /* Quando ativo */
+  .mysidebar.active {
+    transform: translateX(0);
+  }
+}

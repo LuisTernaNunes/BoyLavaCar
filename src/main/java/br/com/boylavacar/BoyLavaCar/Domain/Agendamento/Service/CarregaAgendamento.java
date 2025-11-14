@@ -18,13 +18,6 @@ public class CarregaAgendamento {
     @Autowired
     AgendamentoRepository agendamentoRepository;
 
-    public List<Agendamento> buscaAgendamento(){
-        LocalDate hoje = LocalDate.now();
-        LocalDateTime inicio = hoje.atStartOfDay();
-        LocalDateTime fim = hoje.atTime(LocalTime.MAX);
-        return agendamentoRepository.findByStatusAndDataAgendamentoBetween(StatusAgendamento.ABERTO,inicio, fim);
-    }
-
     public List<Agendamento> buscaAgendamentoDia(String filtro){
         LocalDateTime inicio, fim;
         switch(filtro) {

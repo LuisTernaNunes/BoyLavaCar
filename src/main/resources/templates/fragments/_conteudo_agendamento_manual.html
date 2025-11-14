@@ -1,0 +1,19 @@
+<div th:fragment="bloco" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-6 col-lg-4">
+                <div class="card shadow">
+                    <div class="card-header text-white text-center " style="background-color: #2A22D1; color: white;">
+                        <h5 class="mb-0">Agendamento</h5>
+                    </div>
+                    <div th:replace="~{fragments/agendamento/_agendamento_cat :: etapa}"></div>
+                    <div th:replace="~{fragments/agendamento/_agendamento_serv :: etapa}"></div>
+                    <div th:replace="~{fragments/agendamento/_agendamento_data :: etapa}"></div>
+                    <div th:replace="~{fragments/agendamento/_agendamento_dados :: etapa}"></div>
+                    <div th:replace="~{fragments/agendamento/_agendamento_info :: etapa}"></div>
+                    <div th:replace="~{fragments/agendamento/_agendamento_confirmado :: etapa}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
